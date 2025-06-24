@@ -1,6 +1,4 @@
-#!/usr/bin/python3
-# This script depends on PyUSB. You can get it with pip install pyusb.
-# You will also need libusb installed
+# Imports
 
 import usb.core
 import usb.util
@@ -18,6 +16,8 @@ from tkinter import *
  
 from tkinter import scrolledtext
 
+# Constantes
+
 CMD_ID_EXIT = 0
 CMD_ID_LIST_OLD = 1
 CMD_ID_FILE_RANGE = 2
@@ -29,10 +29,14 @@ CMD_TYPE_ACK = 2
 
 BUFFER_SEGMENT_DATA_SIZE = 0x100000
 
+# Variáveis
+
 in_ep = None
 out_ep = None
 
 file_list = {}
+
+# Funções
 
 def LOG(line):
     if int(text1.index('end').split('.')[0]) - 1 > 1000: # max 1000 lines of log are shown
@@ -239,21 +243,21 @@ def start_gui(start):
 
     root = tk.Tk()
     root.resizable(False, False)
-    root.title('DBI backend GUI')
+    root.title('DBI Backend PT-BR')
 
     canvas1 = tk.Canvas(root, width = 800, height = 500)
     canvas1.pack()
-    addFolderButton = tk.Button(text='Add folder',command=gui_choose_dir,width=10)
+    addFolderButton = tk.Button(text='Selecionar pasta(s)',command=gui_choose_dir,width=20)
     canvas1.create_window(0, 0, window=addFolderButton, anchor=tk.NW)
-    addFilesButton = tk.Button(text='Add files',command=gui_choose_files,width=10)
+    addFilesButton = tk.Button(text='Selecionar arquivo(s)',command=gui_choose_files,width=20)
     canvas1.create_window(100, 0, window=addFilesButton, anchor=tk.NW)
-    clearListButton = tk.Button(text='Clear list',command=gui_clear_list,width=10)
+    clearListButton = tk.Button(text='Limpar a lista',command=gui_clear_list,width=20)
     canvas1.create_window(200, 0, window=clearListButton, anchor=tk.NW)
 
     flist1 = tk.scrolledtext.ScrolledText(height=20, width=112)
     canvas1.create_window(0, 30, window=flist1, anchor=tk.NW)
 
-    startServerButton = tk.Button(text='Start server',state=tk.DISABLED, command=do_start_server,width=10)
+    startServerButton = tk.Button(text='Iniciar a conexão',state=tk.DISABLED, command=do_start_server,width=20)
     canvas1.create_window(0, 325, window=startServerButton, anchor=tk.NW)
 
     text1 = tk.scrolledtext.ScrolledText(height=10, width=112)
